@@ -50,6 +50,7 @@ public class SessaoController {
 		}
 		Sessao sessao = form.toSessao(salaDao, filmeDao);
 		List<Sessao> sessoesDaSala = sessaoDao.buscaSessoesDaSala(sessao.getSala());
+
 		GerenciadorDeSessao gerenciador = new GerenciadorDeSessao(sessoesDaSala);
 		if (gerenciador.cabe(sessao)) {
 			ModelAndView modelAndView =  new ModelAndView("redirect:/admin/sala/" + form.getSalaId() + "/sessoes");
