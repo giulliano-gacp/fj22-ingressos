@@ -16,7 +16,7 @@ public class Carrinho {
 	}
 
 	public boolean isSelecionado(Lugar lugar) {
-		return ingressos.stream().map(Ingresso::getLugar).anyMatch(l -> l.equals(l));
+		return ingressos.stream().map(Ingresso::getLugar).anyMatch(l -> l.equals(lugar));
 	}
 
 }
