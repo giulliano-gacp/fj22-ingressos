@@ -33,6 +33,6 @@ public class Cartao {
 	}
 
 	public boolean isValido() {
-		return vencimento.isAfter(YearMonth.now());
+		return vencimento != null && vencimento.isAfter(YearMonth.now());
 	}
 }
