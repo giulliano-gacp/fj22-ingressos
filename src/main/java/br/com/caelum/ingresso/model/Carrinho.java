@@ -23,12 +23,16 @@ public class Carrinho {
 	public BigDecimal getTotal() {
 		return ingressos.stream().map(Ingresso::getPreco).reduce(BigDecimal::add).orElse(BigDecimal.ZERO);
 	}
-	
+
 	public List<Ingresso> getIngressos() {
 		return ingressos;
 	}
 	
 	public void setIngressos(List<Ingresso> ingressos) {
 		this.ingressos = ingressos;
+	}
+
+	public Compra toCompra() {
+		return new Compra(ingressos);
 	}
 }
