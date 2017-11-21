@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -68,6 +69,8 @@ public class SessaoController {
 			ModelAndView modelAndView =  new ModelAndView("redirect:/admin/sala/" + form.getSalaId() + "/sessoes");
 			sessaoDao.save(sessao);
 			return modelAndView;
+		} else {
+			result.addError(new FieldError("sessaoForm", "horario", "Já existe uma sessão nesse horário."));
 		}
 		return form(form.getSalaId(), form);
 
