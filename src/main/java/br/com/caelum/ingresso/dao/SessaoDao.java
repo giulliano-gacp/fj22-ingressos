@@ -1,6 +1,7 @@
 package br.com.caelum.ingresso.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -8,6 +9,7 @@ import javax.persistence.PersistenceContext;
 import org.springframework.stereotype.Repository;
 
 import br.com.caelum.ingresso.model.Filme;
+import br.com.caelum.ingresso.model.Ingresso;
 import br.com.caelum.ingresso.model.Sala;
 import br.com.caelum.ingresso.model.Sessao;
 
@@ -35,6 +37,12 @@ public class SessaoDao {
 
 	public Sessao findOne(Integer id) {
 		return manager.find(Sessao.class, id);
+	}
+	
+	public Sessao buscaSessaoComIngressos(Integer id) {
+		return manager.createQuery("select s from Sessao s left join fetch s.ingressos where s.id = :id", Sessao.class)
+				.setParameter("id", id)
+				.getSingleResult();
 	}
 
 }

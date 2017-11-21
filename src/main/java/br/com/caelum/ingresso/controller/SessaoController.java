@@ -79,7 +79,7 @@ public class SessaoController {
 	@GetMapping("/sessao/{id}/lugares")
 	public ModelAndView lugaresNaSessao(@PathVariable("id") Integer sessaoId) {
 		ModelAndView modelAndView = new ModelAndView("sessao/lugares");
-		Sessao sessao = sessaoDao.findOne(sessaoId);
+		Sessao sessao = sessaoDao.buscaSessaoComIngressos(sessaoId);
 		Optional<ImagemCapa> imagemCapa = client.request(sessao.getFilme(), ImagemCapa.class);
 		modelAndView.addObject("sessao", sessao);
 		modelAndView.addObject("carrinho", carrinho);
