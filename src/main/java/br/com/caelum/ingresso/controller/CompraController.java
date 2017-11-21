@@ -50,14 +50,17 @@ public class CompraController {
 	@PostMapping("/compra/comprar")
 	@Transactional
 	public ModelAndView comprar(@Valid Cartao cartao, BindingResult result) {
-		ModelAndView modelAndView = new ModelAndView("redirect:/");
-		if (cartao.isValido()) {
-			compraDao.save(carrinho.toCompra());
-			carrinho.limpa();
-		} else {
+		if (result.hasErrors()) {
+			return checkout(cartao);
+		}
+		
+		if (!cartao.isValido()) {
 			result.addError(new FieldError("cartao", "vencimento", "Vencimento inválido."));
 			return checkout(cartao);
 		}
-		return modelAndView;
+		
+		compraDao.save(carrinho.toCompra());
+		carrinho.limpa();
+		return new ModelAndView("redirect:/");
 	}
 }

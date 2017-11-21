@@ -32,9 +32,7 @@
                 <label for="duracao">Duracao:</label>
                 <input id="duracao" type="text" name="duracao" class="form-control"
                        value="${filme.duracao.toMinutes()}">
-                <c:forEach items="${bindingResult.getFieldErrors('duracao')}" var="error">
-                    <span class="text-danger">${error.defaultMessage}</span>
-                </c:forEach>
+                <form:errors path="filme.duracao" cssClass="text-danger" />
             </div>
 		
 		
