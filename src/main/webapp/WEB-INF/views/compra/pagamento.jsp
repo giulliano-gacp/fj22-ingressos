@@ -3,6 +3,7 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib tagdir="/WEB-INF/tags/" prefix="ingresso"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <ingresso:template>
 	<jsp:body>
@@ -30,14 +31,14 @@
                         <td>${ingresso.sessao.filme.nome }</td>
                         <td>${ingresso.sessao.horario}</td>
                         <td>${ingresso.tipoDeIngresso.descricao}</td>
-                        <td>${ingresso.preco}</td>
+                        <td><fmt:formatNumber value="${ingresso.preco}"  type="currency" currencyCode="BRL" /> </td>
                     </tr>
                 </c:forEach>
                 </tbody>
 
                 <tfoot>
                 <td colspan="5" class="text-right"><strong>TOTAL</strong></td>
-                <td><strong>${carrinho.total}</strong></td>
+                <td><strong><fmt:formatNumber value="${carrinho.total}"  type="currency" currencyCode="BRL" /></strong></td>
                 </tfoot>
 
             </table>
