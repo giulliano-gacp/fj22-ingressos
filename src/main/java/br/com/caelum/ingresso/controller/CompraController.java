@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -54,7 +55,7 @@ public class CompraController {
 			compraDao.save(carrinho.toCompra());
 			carrinho.limpa();
 		} else {
-			result.rejectValue("vencimento", "Vencimento inválido");
+			result.addError(new FieldError("cartao", "vencimento", "Vencimento inválido."));
 			return checkout(cartao);
 		}
 		return modelAndView;

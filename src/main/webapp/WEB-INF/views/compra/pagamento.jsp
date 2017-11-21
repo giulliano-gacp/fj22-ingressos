@@ -7,6 +7,7 @@
 
 <ingresso:template>
 	<jsp:body>
+	
    		<div class=" col-md-6 col-md-offset-3">
         <form action="/compra/comprar" method="post">
             <table class="table table-hover ">
@@ -79,6 +80,7 @@
 				<div class="col-md-6">
 					<label for="vencimento">Vencimento:</label>
 					<input id="vencimento" type="text" name="vencimento" class="form-control">
+					<form:errors path="cartao.vencimento" cssClass="text-danger" />
 				</div>
 			</div>
 
